@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic Predictor</title>
+
+    <!-- Add Bootstrap CSS link with dark theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <h1 class="mb-4">Topic Predictor</h1>
+
+    <form method="post" class="mb-4">
+        <div class="form-group">
+            <label for="headline">Enter a news headline:</label>
+            <input type="text" id="headline" name="headline" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Predict</button>
+    </form>
+
+    {% if headline %}
+        <p><strong>Entered Headline:</strong> {{ headline }}</p>
+        {% if topic %}
+            <h3><strong>Predicted Topic Number:</strong> {{ topic }}</h3>
+            <h2><strong>Top Words:</strong> {{ top_words | join(', ') }}</h2>
+        {% else %}
+            <h3><strong>Error:</strong> {{ error }}</h3>
+        {% endif %}
+<div class="mb-4">
+    <img src="{{ wordcloud_image }}" alt="WordCloud" class="img-fluid">
+</div>
+
+    {% endif %}
+</body>
+</html>
